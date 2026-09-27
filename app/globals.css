@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #17211d;
+  --color-sand: #f4ebdd;
+  --color-paper: #faf8f3;
+  --color-terracotta: #c86b4a;
+  --color-olive: #68745b;
+  --color-gold: #d7a84b;
+  --color-muted: #73756f;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-sand: var(--color-sand);
+  --color-paper: var(--color-paper);
+  --color-terracotta: var(--color-terracotta);
+  --color-olive: var(--color-olive);
+  --color-gold: var(--color-gold);
+  --color-muted: var(--color-muted);
+
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-terracotta);
+  color: var(--color-paper);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.rail::-webkit-scrollbar {
+  height: 6px;
+}
+.rail::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-ink) 20%, transparent);
+  border-radius: 999px;
+}
+
+/* Night sky effect — twinkling stars + falling meteors, used on the
+   homepage hero over the existing dark overlay. Respects the
+   prefers-reduced-motion rule above automatically (animation-* props). */
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.star-twinkle {
+  animation-name: twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  box-shadow: 0 0 4px 0.5px rgba(255, 255, 255, 0.55);
+}
+
+@keyframes meteor-fall {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(215deg) scaleX(0.3);
+  }
+  2% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(215deg) scaleX(1);
+  }
+  14% {
+    opacity: 0.9;
+    transform: translate(-230px, 230px) rotate(215deg) scaleX(1);
+  }
+  18% {
+    opacity: 0;
+    transform: translate(-260px, 260px) rotate(215deg) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.meteor {
+  position: absolute;
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.35) 40%,
+    transparent
+  );
+  border-radius: 999px;
+  transform-origin: left center;
+  animation-name: meteor-fall;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
+}
+
+.meteor::after {
+  content: "";
+  position: absolute;
+  left: -1.5px;
+  top: -1.5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px 1.5px rgba(255, 255, 255, 0.85);
+}
