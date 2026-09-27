@@ -1,4 +1,5 @@
 import { Destination } from "./types";
+import { extraDestinations } from "./mock-data-extra";
 
 const img = (seed: string, w = 1200, h = 800) =>
   `https://picsum.photos/seed/${seed}/${w}/${h}`;
@@ -1821,7 +1822,7 @@ export const varanasi: Destination = {
   },
 };
 
-export const destinations: Destination[] = [jaipur, goa, manali, varanasi];
+export const destinations: Destination[] = [jaipur, goa, manali, varanasi, ...extraDestinations];
 
 export const experiences = [
   { label: "History", icon: "landmark", image: img("exp-history", 700, 900) },
