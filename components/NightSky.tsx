@@ -5,7 +5,7 @@ function seeded(n: number) {
   return x - Math.floor(x);
 }
 
-const STAR_COUNT = 90;
+const STAR_COUNT = 220;
 const stars = Array.from({ length: STAR_COUNT }, (_, i) => {
   const size = 1 + seeded(i * 5.3) * 2.2; // 1–3.2px
   return {
@@ -17,14 +17,6 @@ const stars = Array.from({ length: STAR_COUNT }, (_, i) => {
     duration: 2.2 + seeded(i * 4.1) * 3.2,
   };
 });
-
-const METEOR_COUNT = 6;
-const meteors = Array.from({ length: METEOR_COUNT }, (_, i) => ({
-  top: seeded(i * 9.3 + 41) * 32, // upper third of the hero
-  left: 20 + seeded(i * 6.1 + 41) * 65,
-  delay: seeded(i * 3.7 + 41) * 14, // staggered over a 14s window
-  duration: 7 + seeded(i * 8.3 + 41) * 6, // 7–13s between falls, looping
-}));
 
 export default function NightSky() {
   return (
@@ -43,18 +35,6 @@ export default function NightSky() {
             boxShadow: s.bright
               ? "0 0 6px 1px rgba(255,255,255,0.65)"
               : undefined,
-          }}
-        />
-      ))}
-      {meteors.map((m, i) => (
-        <span
-          key={i}
-          className="meteor"
-          style={{
-            top: `${m.top}%`,
-            left: `${m.left}%`,
-            animationDelay: `${m.delay}s`,
-            animationDuration: `${m.duration}s`,
           }}
         />
       ))}
