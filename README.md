@@ -528,3 +528,4 @@ Realistically, what's left needs either your own API keys (Gemini, Google
 Maps) to fully confirm, or is a deliberate scope cut (RAG, Restaurant
 admin CRUD) rather than something unfinished by accident.
 "# wanderai" 
+"# wanderai" 
