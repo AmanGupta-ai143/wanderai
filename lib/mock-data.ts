@@ -11,7 +11,8 @@ export const jaipur: Destination = {
   region: "Rajasthan",
   country: "India",
   rating: 4.8,
-  heroImage: img("jaipur-hero", 1800, 1100),
+  heroImage:
+    "https://images.unsplash.com/photo-1705861145803-9f7ad1559bc6?q=80&w=1800&auto=format&fit=crop",
   cardImage: img("jaipur-card", 900, 1100),
   tags: ["Heritage", "Cuisine", "Culture"],
   bestTime: "Oct – Mar",
